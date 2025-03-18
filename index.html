@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from kookie.pages.dev/ by HTTrack Website Copier/3.x [XR&CO'2017], Tue, 18 Mar 2025 05:09:50 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOOKIE.TV</title>
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute(
+                'data-theme', 
+                savedTheme || (prefersDark ? 'dark' : 'dark')
+            );
+            document.body.classList.add('loading');
+        })();
+    </script>
+    <link rel="stylesheet" href="../3db7.xyz/assets/codes/main-alt.css">
+    <link rel="stylesheet" href="iptv.css">
+    <!-- <script src="https://content.jwplatform.com/libraries/Z79JsmAO.js"></script> -->
+    <script src="../ssl.p.jwpcdn.com/player/v/8.36.4/jwplayer.js"></script>
+    <script>
+        jwplayer.key = "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=";
+    </script>
+    <script src="../external.html?link=https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div id="site-loader" class="site-loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="scanning.gif" alt="Scanning" width="64" height="64">
+            </div>
+            <div class="loader-messages">
+                <div class="loader-message">
+                    <span class="message-text">Checking available servers...</span>
+                    <span class="check-icon hidden">✓</span>
+                </div>
+                <div class="loader-message">
+                    <span class="message-text">Rerouting mirror sites...</span>
+                    <span class="check-icon hidden">✓</span>
+                </div>
+                <div class="loader-message">
+                    <span class="message-text">Final touches...</span>
+                    <span class="check-icon hidden">✓</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../external.html?link=https://3db7.xyz/">
+                    <span><pre>< GO BACK</pre></span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#about">What is this?</a>
+                <a href="#disclaimer">Disclaimer</a>
+                <a>v0.3.6 🅑</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i data-feather="sun" class="sun"></i>
+                    <i data-feather="moon" class="moon"></i>
+                </button>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="player-page">
+        <div class="player-wrapper">
+            <div class="player-container" id="playerContainer">
+                <div id="jwplayer" class="player-element"></div>
+                <div class="player-overlay" id="playerOverlay">
+                    <div class="overlay-content">
+                        <i data-feather="tv" class="overlay-icon"></i>
+                        <p class="overlay-message">Select a channel to start watching</p>
+                    </div>
+                </div>
+                <div class="player-loading hidden" id="playerLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading stream...</p>
+                </div>
+                <div class="player-error hidden" id="playerError">
+                    <i data-feather="alert-circle"></i>
+                    <p class="error-message"></p>
+                    <button class="retry-button">Retry</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="channels-wrapper">
+            <div class="channels-container">
+                <div class="channels-header">
+                    <div class="header-controls">
+                        <div class="control-group">
+                            <select id="categorySelector" class="category-selector">
+                                <option value="amazon">Amazon</option>
+                                <option value="astro">Astro</option>
+                                <option value="cignal">Cignal</option>
+                                <option value="converge">Converge</option>
+                                <option value="familyvip">FamilyVIP</option>
+                                <option value="indihometv">IndiHomeTV</option>
+                                <option value="iwanttfc">iWantTFC</option>
+                                <option value="jungo">Jungo</option>
+                                <option value="klowdtv">KlowdTV</option>
+                                <option value="iptv-jp">LuongTran/🇯🇵</option>
+                                <option value="mewatch">meWATCH</option>
+                                <option value="moveonjoy">MoveOnJoy</option>
+                                <option value="plex">Plex</option>
+                                <option value="skygo">SkyGO+</option>
+                                <option value="ssh101">SSH101</option>
+                                <option value="vision">Vision+</option>
+                            </select>
+                            <button id="refreshChannels" class="refresh-button" title="Refresh channel list">
+                                <i data-feather="refresh-cw"></i>
+                            </button>
+                            <div class="channel-count">
+                                Total: <span id="channelCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="channels-scroll-container">
+                    <div class="channels-list" id="channelsList">
+                        <div class="channel-status" id="channelStatus">
+                            <div class="loading-spinner"></div>
+                            <p>Loading channels...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i data-feather="search" class="search-icon"></i>
+                        <input type="text" id="channelSearch" class="channel-search" aria-label="Search channels">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <section id="about" class="hero">
+        <div style="margin-top: -5rem;">
+            <div class="cards-grid">
+                <a class="card">
+                    <div class="card-icon">
+                        <i data-feather="globe"></i>
+                    </div>
+                    <h3>Real-Time Scanning</h3>
+                    <p>Our clever scanner zips through multiple sources simultaneously.</p>
+                </a>
+
+                <a class="card">
+                    <div class="card-icon">
+                        <i data-feather="list"></i>
+                    </div>
+                    <h3>Channel Variety</h3>
+                    <p>Explore a treasure trove of options, from local to international.</p>
+                </a>
+
+                <a class="card">
+                    <div class="card-icon">
+                        <i data-feather="smartphone"></i>
+                    </div>
+                    <h3>User-Friendly</h3>
+                    <p>Effortlessly switch between channels with a simple click.</p>
+                </a>
+
+                <a class="card">
+                    <div class="card-icon">
+                        <i data-feather="shield"></i>
+                    </div>
+                    <h3>Zero Costs. No Ads.</h3>
+                    <p>And the best part? It's completely free!</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="disclaimer" class="content-section">
+        <div class="section-container">
+            <h2>Important Notice</h2>
+            <div class="content-card">
+                <p>
+                    While we strive to provide you with the best viewing experience, please be aware that we do not verify the legality of the scanned channels and sources.
+                    
+                    <br></br>
+
+                    We claim no responsibility for the content accessed through our service. Users are encouraged to exercise discretion and verify the legality of the content in their respective regions.
+                    
+                    <br></br>
+
+                    By using our service, you acknowledge and agree that you are solely responsible for your viewing choices and any legal implications that may arise.
+                    
+                    <br></br>
+                    
+                    We do not own, control, or endorse any of the channels or content accessed through our platform.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <hr class="footer-divider">
+        <p>Made with ❤️ & ✨</p>
+        <p>&copy; <span id="currentYear"></span>, <a href="../external.html?link=https://3db7.xyz/" style="text-decoration: none;">3DB7</a>.</p>
+    </footer>
+
+    <script defer src="../3db7.xyz/assets/codes/main-alt.js"></script>
+    <script defer src="iptv.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+
+<!-- Mirrored from kookie.pages.dev/ by HTTrack Website Copier/3.x [XR&CO'2017], Tue, 18 Mar 2025 05:09:57 GMT -->
+</html>
